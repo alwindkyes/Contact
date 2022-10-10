@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 btn-toolbar">
+      <div class="row">
+        <div class="col-md-6 btn-toolbar">
+          <h3>Contact List</h3>
+          <button class="btn btn-info" (click)="showFunction()">New<sup>+</sup></button>
+          <br><br>
+          <div *ngIf="show">
+            <h4>Add Contact</h4>
+            <form #addNewContactForm="ngForm" (submit)="addNewContact(addNewContactForm)">
+              <div class="form-group">
+                <label>Id</label>
+                <input type="number" class="form-control" id="id" name="id" placeholder="Enter your id" required
+                ngModel>
+              </div>
+
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" id="firstName" name="firstName"
+                  placeholder="Enter your first name" required ngModel>
+              </div>
+
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter your last name"
+                  required ngModel>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-info" [disabled]="!addNewContactForm.valid">Add New Contact</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="row">
+        <div class="col-md-10 btn-toolbar">
+          <button class="btn btn-success" (click)="getContact()">Get contact</button>
+        </div>
+      </div> -->
+
+      <div class="row">
+        <div class="col-md-6 btn-toolbar">
+          <form *ngIf="showEditVar" #editForm="ngForm" (submit)="editContact(editForm)">
+            <h3>Edit Contact</h3>
+            <div class="form-group">
+              <label>Id</label>
+              <input type="number" class="form-control" name="id" placeholder="Enter your id" required
+                [(ngModel)]="contactList.id">
+            </div>
+
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" class="form-control" name="firstName" placeholder="Enter your first name" required
+                [(ngModel)]="contactList.firstName">
+            </div>
+
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" class="form-control" name="lastName" placeholder="Enter your last name" required
+                [(ngModel)]="contactList.lastName">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" [disabled]="!editForm.valid">Edit Contact</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10 btn-toolbar">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let contact of contactList">
+                <td>{{ contact.id }}</td>
+                <td>{{ contact.firstName }}</td>
+                <td>{{ contact.lastName }}</td>
+                <td><button class="btn btn-success"
+                    (click)="setEditValues(contact.id, contact.firstName, contact.lastName)">Edit</button></td>
+                <td><button class="btn btn-success" (click)="updateContact(contact.id)">Update</button>
+                </td>
+                <td><button class="btn btn-danger" (click)="deleteContact(contact.id)">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

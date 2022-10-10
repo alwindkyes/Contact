@@ -1,0 +1,39 @@
+<h3>MIDDLE</h3>
+<div class="row">
+
+    <div class="col-md-4">
+        <h4>{{ user.firstName | uppercase }} {{ user.lastName| lowercase }}</h4>
+        <h4>{{ user.dob | date: 'MMMM dd yyyy' }}</h4>
+        <h4>{{ user.salary | currency: 'INR': 'code': '3.2-2'  }}</h4>
+        <h4>{{ user | json }}</h4>
+        <h4>{{ user.dob | date: 'MMMM' | uppercase }}</h4>
+        <code>
+            {{ user | json }}
+        </code>
+    </div>
+    <div class="col-md-6">
+        <h4>short : {{ user.dob | date: 'short' }}</h4>
+        <h4>medium : {{ user.dob | date: 'medium' }}</h4>
+        <h4>long : {{ user.dob | date: 'long' }}</h4>
+        <h4>full : {{ user.dob | date: 'full' }}</h4>
+        <h4>shortDate : {{ user.dob | date: 'shortDate' }}</h4>
+        <h4>mediumDate : {{ user.dob | date: 'mediumDate' }}</h4>
+        <h4>longDate : {{ user.dob | date: 'longDate' }}</h4>
+        <h4>fullDate : {{ user.dob | date: 'fullDate' }}</h4>
+        <h4>shortTime : {{ user.dob | date: 'shortTime' }}</h4>
+        <h4>mediumTime : {{ user.dob | date: 'mediumTime' }}</h4>
+        <h4>longTime : {{ user.dob | date: 'longTime' }}</h4>
+        <h4>fullTime : {{ user.dob | date: 'fullTime' }}</h4>
+    </div>
+    <div class="col-md-5">
+        <h2>Custom Pipe</h2>
+        <div *ngFor="let u of userDetail">
+            <h4 [innerHTML]="u.firstName | highlight: u.promotion"></h4>
+        </div>
+        
+    </div>
+    <div class="col-md-10">
+        <hr>
+        <img src="assets/6WTT.jpg" alt="">
+    </div>
+</div>

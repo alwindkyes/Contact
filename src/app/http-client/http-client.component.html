@@ -1,0 +1,349 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-10 btn-toolbar">
+                    <h4>Add Contact</h4>
+                    <button class="btn btn-info" (click)="showFunction()">New<sup>+</sup></button>
+                    <br><br>
+                    <div *ngIf="show">
+                        <form #addNewContactForm="ngForm" (submit)="addNewContact(addNewContactForm)">
+                            <div class="form-group">
+                                <label>Id</label>
+                                <input type="number" class="form-control" id="id" name="id" placeholder="Enter your id"
+                                    required ngModel>
+                            </div>
+
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" id="firstName" name="firstName"
+                                    placeholder="Enter your first name" required ngModel>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" id="lastName" name="lastName"
+                                    placeholder="Enter your last name" required ngModel>
+                            </div>
+
+                            <div class="form-group">
+                                <button class="btn btn-warning" [disabled]="!addNewContactForm.valid">Add New
+                                    Contact</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- <button class="btn btn-success" (click)="setDefaults()">Set Edit Values</button> -->
+            <!-- <button class="btn btn-primary" (click)="updateContact(contactList.id)">Edit Contact</button>
+                      <button class="btn btn-danger" (click)="deleteContact(contactList)">Delete Contact</button> -->
+            <!-- <div class="row">
+                <div class="col-md-10 btn-toolbar">
+                    <button class="btn btn-success" (click)="getContact()">Get contact</button>
+                </div>
+            </div> -->
+            <div class="row">
+                <div class="col-md-6 btn-toolbar">
+                    <form *ngIf="showEditVar" #editForm="ngForm" (submit)="editContact(editForm)">
+                        <h3>Edit Contact</h3>
+                        <div class="form-group">
+                            <label>Id</label>
+                            <input type="number" class="form-control" name="id" placeholder="Enter your id" required
+                                [(ngModel)]="contactList.id">
+                        </div>
+
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" class="form-control" name="firstName" placeholder="Enter your first name"
+                                required [(ngModel)]="contactList.firstName">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control" name="lastName" placeholder="Enter your last name"
+                                required [(ngModel)]="contactList.lastName">
+                        </div>
+                        <button class="btn btn-primary" [disabled]="!editForm.valid">Edit Contact</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-10">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <!-- <th scope="col">Id</th>
+                                          <th scope="col">Name</th>
+                                          <th scope="col">Username</th> -->
+                                <!-- <th scope="col">UserId</th>
+                                          <th scope="col">Id</th>
+                                          <th scope="col">Title</th>
+                                          <th scope="col">Body</th> -->
+                                <th scope="col">Id</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let contact of contactList">
+                                <!-- <td>{{ contact.id }}</td>
+                                          <td>{{ contact.name }}</td>
+                                          <td>{{ contact.username }}</td> -->
+                                <!-- <td>{{ contact.userId }}</td>
+                                          <td>{{ contact.id }}</td>
+                                          <td>{{ contact.title }}</td>
+                                          <td>{{ contact.body }}</td> -->
+                                <td>{{ contact.id }}</td>
+                                <td>{{ contact.firstName }}</td>
+                                <td>{{ contact.lastName }}</td>
+                                <!-- <td><button class="btn btn-primary" (click)="showFunction()">Edit</button></td> -->
+                                <!-- <td><button class="btn btn-primary"
+                                        (click)="updateContact(contact.id, contact.firstName, contact.lastName)">Edit</button>
+                                </td> -->
+                                <td><button class="btn btn-success"
+                                        (click)="setDefaults(contact.id, contact.firstName, contact.lastName)">Set Edit
+                                        Values</button></td>
+                                <td><button class="btn btn-success"
+                                        (click)="updateContact(contact.id)">Update
+                                        Edited
+                                        Values</button></td>
+                                <td><button class="btn btn-danger" (click)="deleteContact(contact.id)">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <button class="btn btn-primary" (click)="showFunction()">Edit</button>
+  <div *ngIf="show">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi ipsa quo autem saepe esse. Quo
+    aspernatur iste vitae molestiae, id voluptatibus itaque praesentium officiis, nostrum quidem ipsa. A molestiae
+    consectetur est nostrum? Fugiat quo nostrum quas facilis molestias eligendi illo, doloribus perferendis sunt libero
+    quod. Voluptate impedit laudantium dolor illo!</div> -->
+
+<!-- "comments": [
+    {
+      "id": 4,
+      "firstName": "Solo",
+      "lastName": "Sikova"
+    },
+    {
+       "id": 5,
+       "firstName": "Sami",
+       "lastName": "Zayn"
+     },
+     {
+       "id": "6",
+       "firstName": "Antonio",
+       "lastName": "Cesaro"
+     },
+     {
+       "id": "7",
+       "firstName": "",
+       "lastName": ""
+     },
+     {
+       "id": "8",
+       "firstName": "Sami",
+       "lastName": "Zayn"
+     },
+     {
+       "id": "9",
+       "firstName": "",
+       "lastName": ""
+     },
+     {
+       "id": "10",
+       "firstName": "Kyle",
+       "lastName": "O'Reily"
+     },
+     {
+       "id": 15,
+       "firstName": "Sasha",
+       "lastName": "Banks"
+     },
+     {
+       "id": 20,
+       "firstName": "Brock",
+       "lastName": "Lesnar"
+     },
+     {
+       "id": 23,
+       "firstName": "Bobby",
+       "lastName": "Lashley"
+     },
+     {
+       "id": 55,
+       "firstName": "Shawn",
+       "lastName": "Michaels"
+     },
+     {
+       "id": 16,
+       "firstName": "Alexa",
+       "lastName": "Bliss"
+     },
+     {
+       "id": 24,
+       "firstName": "Kyle",
+       "lastName": "O'Reily"
+     },
+     {
+       "id": 56,
+       "firstName": "Kyle",
+       "lastName": "O'Reily"
+     },
+     {
+       "id": 29,
+       "firstName": "AJ",
+       "lastName": "Styles"
+     },
+     {
+       "id": 77,
+       "firstName": "Bobby",
+       "lastName": "O'Reily"
+     },
+     {
+       "id": 1,
+       "firstName": "Jon",
+       "lastName": "Moxley"
+     },
+     {
+       "id": 31,
+       "firstName": "Solo",
+       "lastName": "Sikova"
+     },
+     {
+       "id": 78,
+       "firstName": "",
+       "lastName": ""
+     },
+     {
+       "id": 79,
+       "firstName": "",
+       "lastName": ""
+     },
+     {
+       "id": 80,
+       "firstName": "",
+       "lastName": ""
+     },
+     {
+       "id": 81,
+       "firstName": "",
+       "lastName": ""
+     },
+     {
+       "id": 82,
+       "firstName": "",
+       "lastName": ""
+     },
+     {
+       "id": 83,
+       "firstName": "",
+       "lastName": ""
+     }
+   ] -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <h2>Contact</h2>
+              <div class="col-md-5">
+                  <ul class="list-group">
+                      <li class="list-group-item" *ngFor="let contact of contactList">{{ contact.firstName +' '+
+                          contact.lastName}}</li>
+                  </ul>
+                  <button class="btn btn-success" (click)="contactService.callingFromTemplate()">Just a Button</button>
+  
+                  <h3>Create new contact</h3>
+                  <div *ngIf="msgTrue">Contact created successfully</div>
+  
+                  <div class="col-md-8">
+                      <form #addNewContactForm="ngForm" (submit)="addNewContact(addNewContactForm)">
+                          <div class="form-group">
+                              <label>Id</label>
+                              <input type="text" class="form-control" name="id" required ngModel>
+                          </div>
+  
+                          <div class="form-group">
+                              <label>First Name</label>
+                              <input type="text" class="form-control" name="firstName" required ngModel>
+                          </div>
+  
+                          <div class="form-group">
+                              <label>Last Name</label>
+                              <input type="text" class="form-control" name="lastName" required ngModel>
+                          </div>
+  
+                          <div class="form-group">
+                              <button class="btn btn-danger" [disabled]="!addNewContactForm.valid">Add</button>
+                          </div>
+  
+                      </form>
+                  </div>
+                  <button class="btn btn-warning" (click)="updateContact(1)">Update</button>
+                  <button class="btn btn-warning" (click)="deleteContact(2)">Delete</button>
+                  <button class="btn btn-info" (click)="getContact()">Get Contact</button>
+            
+  
+          </div>
+      </div>
+  </div> -->
